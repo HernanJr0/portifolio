@@ -1,23 +1,19 @@
-// Navigation Menu
 const navMenu = document.getElementById('nav-menu');
 const navToggle = document.getElementById('nav-toggle');
 const navClose = document.getElementById('nav-close');
 
-// Menu show
 if (navToggle) {
     navToggle.addEventListener('click', () => {
         navMenu.classList.add('show-menu');
     });
 }
 
-// Menu hidden
 if (navClose) {
     navClose.addEventListener('click', () => {
         navMenu.classList.remove('show-menu');
     });
 }
 
-// Remove menu mobile
 const navLinks = document.querySelectorAll('.nav__link');
 
 function linkAction() {
@@ -26,7 +22,6 @@ function linkAction() {
 }
 navLinks.forEach(n => n.addEventListener('click', linkAction));
 
-// Change background header
 function scrollHeader() {
     const nav = document.getElementById('header');
     if (this.scrollY >= 80) nav.classList.add('scroll-header');
@@ -34,7 +29,6 @@ function scrollHeader() {
 }
 window.addEventListener('scroll', scrollHeader);
 
-// Show scroll up
 function scrollUp() {
     const scrollUp = document.getElementById('scroll-up');
     if (this.scrollY >= 560) scrollUp.classList.add('show-scroll');
@@ -42,7 +36,6 @@ function scrollUp() {
 }
 window.addEventListener('scroll', scrollUp);
 
-// Sections active link
 const sections = document.querySelectorAll('section[id]');
 
 function scrollActive() {
@@ -62,7 +55,6 @@ function scrollActive() {
 }
 window.addEventListener('scroll', scrollActive);
 
-// Typing effect
 const professions = [
     "Desenvolvedor Full-Stack",
     "Desenvolvedor Front-end",
@@ -102,12 +94,10 @@ function typeWriter() {
     setTimeout(typeWriter, typeSpeed);
 }
 
-// Start typing effect when page loads
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(typeWriter, 1000);
 });
 
-// Animate skills bars when in viewport
 const observerOptions = {
     threshold: 0.3,
     rootMargin: '0px 0px -50px 0px'
@@ -116,7 +106,6 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Animate skills bars
             if (entry.target.classList.contains('skills')) {
                 const skillBars = entry.target.querySelectorAll('.skills__percentage');
                 skillBars.forEach(bar => {
@@ -127,7 +116,6 @@ const observer = new IntersectionObserver((entries) => {
                 });
             }
             
-            // Animate language bars
             if (entry.target.classList.contains('education')) {
                 const languageBars = entry.target.querySelectorAll('.language__bar');
                 languageBars.forEach(bar => {
@@ -138,7 +126,6 @@ const observer = new IntersectionObserver((entries) => {
                 });
             }
             
-            // Animate timeline items
             if (entry.target.classList.contains('experience')) {
                 const timelineItems = entry.target.querySelectorAll('.timeline__item');
                 timelineItems.forEach((item, index) => {
@@ -152,12 +139,10 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe sections
 document.querySelectorAll('.skills, .education, .experience').forEach(section => {
     observer.observe(section);
 });
 
-// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -171,7 +156,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add loading animation for timeline items
 document.addEventListener('DOMContentLoaded', () => {
     const timelineItems = document.querySelectorAll('.timeline__item');
     timelineItems.forEach(item => {
@@ -181,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Parallax effect for home section
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const homeImg = document.querySelector('.home__img-blob');
@@ -191,7 +174,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Add hover effect to cards
 document.querySelectorAll('.about__box, .contact__card, .skills__content, .education__content').forEach(card => {
     card.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-10px) scale(1.02)';
@@ -202,7 +184,6 @@ document.querySelectorAll('.about__box, .contact__card, .skills__content, .educa
     });
 });
 
-// Add click ripple effect
 function addRippleEffect(element) {
     element.addEventListener('click', function(e) {
         const ripple = document.createElement('span');
@@ -234,10 +215,8 @@ function addRippleEffect(element) {
     });
 }
 
-// Add ripple effect to buttons
 document.querySelectorAll('.btn, .contact__button').forEach(addRippleEffect);
 
-// Add CSS for ripple animation
 const style = document.createElement('style');
 style.textContent = `
     @keyframes ripple {
@@ -249,7 +228,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Animate numbers/counters
 function animateCounter(element, target, duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16);
@@ -265,7 +243,6 @@ function animateCounter(element, target, duration = 2000) {
     }, 16);
 }
 
-// Initialize counter animation when about section is visible
 const aboutObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -289,13 +266,11 @@ document.querySelector('.about').addEventListener('DOMContentLoaded', () => {
     aboutObserver.observe(document.querySelector('.about'));
 });
 
-// Add floating animation to social links
 document.querySelectorAll('.home__social-link').forEach((link, index) => {
     link.style.animationDelay = `${index * 0.2}s`;
     link.classList.add('floating');
 });
 
-// Add CSS for floating animation
 const floatingStyle = document.createElement('style');
 floatingStyle.textContent = `
     .floating {
@@ -309,15 +284,12 @@ floatingStyle.textContent = `
 `;
 document.head.appendChild(floatingStyle);
 
-// Add loading screen
 document.addEventListener('DOMContentLoaded', () => {
-    // Remove loading screen after a short delay
     setTimeout(() => {
         document.body.classList.add('loaded');
     }, 500);
 });
 
-// Add CSS for loading screen
 const loadingStyle = document.createElement('style');
 loadingStyle.textContent = `
     .loading-screen {
